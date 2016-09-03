@@ -10,8 +10,12 @@ import java.util.List;
  */
 public class DataContainer {
 
-    List<Task> database = new ArrayList();
+    private List<Task> database = DataFactory.fillTasks();
 
     public DataContainer() {
+    }
+
+    public List<Task> getTasks(){
+        return database;
     }
 }

@@ -1,12 +1,13 @@
-package utils;
+package utils.file;
 
 
 import java.io.*;
+import java.nio.channels.FileChannel;
 
 /**
  * Created by macaque on 03.09.2016.
  */
-public class DataController {
+public class FileController {
 
 
     public static boolean writeToFile() {

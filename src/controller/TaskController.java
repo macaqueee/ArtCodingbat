@@ -1,17 +1,51 @@
 package controller;
 
 import controller.interfaces.ITaskController;
+import db.DataContainer;
 import model.Task;
+import utils.file.FileController;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by macaque on 03.09.2016.
  */
 public class TaskController implements ITaskController {
 
+    private DataContainer dataContainer;
+    private final String copyPath = "src/resources/";
+
+    public TaskController(DataContainer dataContainer) {
+        this.dataContainer = dataContainer;
+    }
 
     @Override
     public void showTasks(){
+        for (Task task : dataContainer.getTasks() ) {
+            System.out.println(task.toString());
+        }
 
+    }
+
+    @Override
+    public Task takeTask(int taskNum) {
+        Task task = dataContainer.getTasks().get(taskNum);
+        File taskFile = new File(task.getPath());
+        File copyTaskFile = new File(copyPath + task.getName() + "/copy/copy" + task.getName() +".java");
+
+        try {
+            FileController.makeFilesCopy(taskFile, copyTaskFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return task;
+    }
+
+    @Override
+    public boolean performTask(String path) {
+        return false;
     }
 
     @Override
@@ -22,16 +56,6 @@ public class TaskController implements ITaskController {
     @Override
     public boolean removeTask(){
         return true;
-    }
-
-    @Override
-    public boolean performTask() {
-        return false;
-    }
-
-    @Override
-    public Task takeTask() {
-        return null;
     }
 
 }
