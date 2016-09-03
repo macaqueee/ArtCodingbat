@@ -3,6 +3,7 @@ package controller;
 import controller.interfaces.ITaskController;
 import db.DataContainer;
 import model.Task;
+import utils.cmd.ShellExecution;
 import utils.file.FileController;
 
 import java.io.File;
@@ -44,8 +45,12 @@ public class TaskController implements ITaskController {
     }
 
     @Override
-    public boolean performTask(String path) {
-        return false;
+    public boolean performTask(String path, String filename) {
+        String command = "cd" + path;
+        ShellExecution.executeCommand(command);
+        command = "javac " + filename;
+        ShellExecution.executeCommand(command);
+        return  true;
     }
 
     @Override
