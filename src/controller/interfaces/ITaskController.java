@@ -10,6 +10,6 @@ public interface ITaskController {
     void showTasks();
     Task addTask();
     boolean removeTask();
-    boolean performTask(String path, String filename);
+    boolean performTask(String path);
     Task takeTask(int taskNum);
 }

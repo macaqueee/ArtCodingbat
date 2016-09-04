@@ -8,7 +8,6 @@ import utils.file.FileController;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 /**
  * Created by macaque on 03.09.2016.
@@ -16,7 +15,7 @@ import java.util.List;
 public class TaskController implements ITaskController {
 
     private DataContainer dataContainer;
-    private final String copyPath = "src/resources/";
+    private final String COPY_PATH = "src/resources/";
 
     public TaskController(DataContainer dataContainer) {
         this.dataContainer = dataContainer;
@@ -34,7 +33,7 @@ public class TaskController implements ITaskController {
     public Task takeTask(int taskNum) {
         Task task = dataContainer.getTasks().get(taskNum);
         File taskFile = new File(task.getPath());
-        File copyTaskFile = new File(copyPath + task.getName() + "/copy/copy" + task.getName() +".java");
+        File copyTaskFile = new File(COPY_PATH + task.getName() + "/copy/copy" + task.getName() +".java");
 
         try {
             FileController.makeFilesCopy(taskFile, copyTaskFile);
@@ -45,12 +44,11 @@ public class TaskController implements ITaskController {
     }
 
     @Override
-    public boolean performTask(String path, String filename) {
-        String command = "cd" + path;
-        ShellExecution.executeCommand(command);
-        command = "javac " + filename;
-        ShellExecution.executeCommand(command);
-        return  true;
+    public boolean performTask(String path) {
+        String command = "javac " + path;
+        String result = ShellExecution.executeCommand(command);
+        System.out.println(result);
+        return true;
     }
 
     @Override

@@ -14,6 +14,10 @@ public class Menu {
     private TaskController taskController;
     private static Scanner scanner = new Scanner(System.in);
 
+    public Menu(TaskController taskController) {
+        this.taskController = taskController;
+    }
+
     public void showMenu(){
         System.out.println("1: show all tasks");
         System.out.println("2: take task");
@@ -22,7 +26,7 @@ public class Menu {
         System.out.println("0: exit");
     }
 
-    public void MenuRun() {
+    public void runMenu() {
         while (true) {
             showMenu();
 
@@ -52,16 +56,15 @@ public class Menu {
     }
 
     private void performTaskMenu() {
-        System.out.println("Enter your path of file without filename, please");
+        System.out.println("Enter your path to file, please");
         String path = scanner.next();
-        System.out.println("Enter your filename, please");
-        String filename = scanner.next();
-
-        taskController.performTask(path, filename);
+        taskController.performTask(path);
     }
 
     private void chooseTaskMenu() {
         System.out.println("Pick task, please");
+        int taskNum = scanner.nextInt();
+        taskController.takeTask(taskNum);
     }
 }
 

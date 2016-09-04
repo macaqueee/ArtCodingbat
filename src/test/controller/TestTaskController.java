@@ -1,4 +1,4 @@
-package test;
+package test.controller;
 
 import controller.TaskController;
 import db.DataContainer;
