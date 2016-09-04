@@ -14,7 +14,7 @@ import java.io.IOException;
 public class TaskController implements ITaskController {
 
     private DataContainer dataContainer;
-    private final String COPY_PATH = "src/resources/";
+    private final String COPY_PATH = "resources/";
 
     public TaskController(DataContainer dataContainer) {
         this.dataContainer = dataContainer;

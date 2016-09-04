@@ -10,6 +10,8 @@ import java.nio.channels.FileChannel;
 public class FileController {
 
 
+    public static final int BUFFER_SIZE = 1024;
+
     public static boolean writeToFile() {
         return false;
     }
@@ -26,7 +28,7 @@ public class FileController {
         try {
             is = new FileInputStream(source);
             os = new FileOutputStream(dest);
-            byte[] buffer = new byte[1024];
+            byte[] buffer = new byte[BUFFER_SIZE];
             int length;
             while ((length = is.read(buffer)) > 0) {
                 os.write(buffer, 0, length);
